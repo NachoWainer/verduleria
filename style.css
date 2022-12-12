@@ -27,18 +27,24 @@ h1{
 }
 #seleccion div{
     display: flex;
-    width: 200px;
+    width: 600px;
     height: fit-content;
 }
-#seleccion div div{
+#holderBotones{
     display: flex;
     justify-content: space-between;
+    width: fit-content;
+  
+}
+.botonesSeleccion{
+    width: 200px;
 }
 
 #holder{
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 200px;
   
 
 }
@@ -69,11 +75,34 @@ h1{
 }
 .productName{
     text-align: center;
+    font-family: 'Macondo', cursive;
+    font-size: 20px;
+    
 }
 .imagenProducto{
     width: 250px ;
     height: 200px ;
 }
+.masYmenos{
+    width: 25px;
+    height: 25px;
+}
+.title{
+    font-size: 50px;
+    text-align: center;
+    /*font-family: 'Cinzel', serif;*/
+    
+    font-family: 'Satisfy', cursive;
+}
+.subTitle{
+    font-family: 'Macondo', cursive;
+    font-size: 30px;
+}
+.text{
+    font-family: 'Macondo', cursive;
+    font-size: 20px;
+}
+
 footer{
     position: fixed;
     bottom: 0;

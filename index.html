@@ -5,18 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERDULERÍA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Cinzel&family=Gloria+Hallelujah&family=Macondo&family=Nerko+One&family=Satisfy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
     <body>
     <header>
-        <h1>Frutas y Verduras</h1>
+        <h1 class="title">Frutas y Verduras</h1>
     </header>
 
         <div id="seleccion">
             <div>
-                <div>
-                    <button id="verFrutas">Frutas</button>  
-                    <button id="verVerduras">Verduras</button>
+                <div id="holderBotones">
+                    <button class="subTitle botonesSeleccion" id="verFrutas">Frutas</button>  
+                    <button class="subTitle botonesSeleccion" id="verVerduras">Verduras</button>
                 </div>
             </div>
         </div>
@@ -28,9 +29,9 @@
                         </div>
                         <p class="productName">Manzana</p>
                         <div class="compraProducto">
-                            <button>comprar</button>
+                            <button class="text">comprar</button>
                             
-                            <button>-</button><p>1</p><button>+</button>
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
                             </div>
                     </div>
 
@@ -40,9 +41,9 @@
                         </div>
                         <p class="productName">Banana</p>
                         <div class="compraProducto">
-                            <button>comprar</button>
+                            <button class="text">comprar</button>
                             
-                            <button>-</button><p>1</p><button>+</button>
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
                             </div>
                     </div>
 
@@ -52,9 +53,9 @@
                         </div>
                         <p class="productName">Kiwi</p>
                         <div class="compraProducto">
-                            <button>comprar</button>
+                            <button class="text">comprar</button>
                             
-                            <button>-</button><p>1</p><button>+</button>
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
                             </div>
                     </div>
             
@@ -64,9 +65,9 @@
                         </div>
                         <p class="productName">Pera</p>
                         <div class="compraProducto">
-                            <button>comprar</button>
+                            <button class="text">comprar</button>
                             
-                            <button>-</button><p>1</p><button>+</button>
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
                             </div>
                     </div>
 
@@ -76,9 +77,9 @@
                         </div>
                         <p class="productName">Frutilla</p>
                         <div class="compraProducto">
-                            <button>comprar</button>
+                            <button class="text">comprar</button>
                             
-                            <button>-</button><p>1</p><button>+</button>
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
                             </div>
                     </div>
 
@@ -88,10 +89,10 @@
                         </div>
                         <p class="productName">Naranja</p>
                         <div class="compraProducto">
-                        <button>comprar</button>
-                        
-                        <button>-</button><p>1</p><button>+</button>
-                        </div>
+                            <button class="text">comprar</button>
+                            
+                            <button class="masYmenos">-</button><p class="text">1</p><button class="masYmenos">+</button>
+                            </div>
                     </div>
             
             </div>
@@ -101,16 +102,16 @@
         <footer >
 
                 <div>
-                    <p>articulos en el carrito:</p>
+                    <p class="subTitle">Artículos en el carrito:</p>
                     <ol>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
+                        <li class="text">1</li>
+                        <li class="text">2</li>
+                        <li class="text">3</li>
                     </ol>
                 </div>
 
                 <div>
-                    <p>Total: $$$</p>
+                    <p class="subTitle">Total: $$$</p>
                 </div>
       
         </footer>
