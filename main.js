@@ -17,7 +17,7 @@ function descuento(total,desc){ return (desc == 0) ? total : (total - ((total * 
 
 alert('Hola, bienvenido a la verdulería');
 do {
-    respuesta = prompt('Que desea comprar frutas o verduras?').toUpperCase();
+    respuesta = prompt('Que desea comprar fruta o verdura?').toUpperCase();
     /*QUE VA A COMPRAR*/
     if (respuesta=='VERDURAS'|| respuesta == 'VERDURA') aux = stock.filter(elemento => elemento.type == 'VERDURA');
     else if (respuesta == 'FRUTAS' || respuesta == 'FRUTA' ) aux = stock.filter(elemento => elemento.type == 'FRUTA');
@@ -52,8 +52,8 @@ carrito.forEach(element => {
     
 });
 if (confirm('desea agregar un cupon de descuento?')){
-desc=parseInt(prompt('Que porcentaje de descuento desea realizar, debe ser un numero entero entre 0 y 100'));
-total = descuento(total,desc);
+    desc=parseInt(prompt('Que porcentaje de descuento desea realizar, debe ser un numero entero entre 0 y 100'));
+    total = descuento(total,desc);
 }
 info = info + 'El total de la compra es: ' + ' ' + '$' + total;
 alert(info);
