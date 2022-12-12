@@ -5,23 +5,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERDULERÍA</title>
+    <link rel="stylesheet" href="style.css">
 </head>
     <body>
 
         <h1>Frutas y Verduras</h1>
 
-        <div>
-            <button id="verFrutas">Frutas</button>  
-            <button id="verVerduras">Verduras</button>
-        </div>
 
-        <div>
-            <div id="productos">
-
-            <!--productos-->
-
+        <div id="seleccion">
+            <div>
+                <div>
+                    <button id="verFrutas">Frutas</button>  
+                    <button id="verVerduras">Verduras</button>
+                </div>
             </div>
         </div>
+        <div id="holder">
+            <div id="board">
+                    <div>
+                        <div >
+                            <img class="imagenProducto" src="./images/manzana.jpg" alt="">
+                        </div>
+                        <p class="productName">Manzana</p>
+                        <div class="compraProducto">
+                            <button>comprar</button>
+                            
+                            <button>-</button><p>1</p><button>+</button>
+                            </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <img  class="imagenProducto" src="./images/banana.jpg" alt="">
+                        </div>
+                        <p class="productName">Banana</p>
+                        <div class="compraProducto">
+                            <button>comprar</button>
+                            
+                            <button>-</button><p>1</p><button>+</button>
+                            </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <img class="imagenProducto" src="./images/kiwi.webp" alt="">
+                        </div>
+                        <p class="productName">Kiwi</p>
+                        <div class="compraProducto">
+                            <button>comprar</button>
+                            
+                            <button>-</button><p>1</p><button>+</button>
+                            </div>
+                    </div>
+            
+                    <div>
+                        <div>
+                            <img class="imagenProducto" src="./images/pera.webp" alt="">
+                        </div>
+                        <p class="productName">Pera</p>
+                        <div class="compraProducto">
+                            <button>comprar</button>
+                            
+                            <button>-</button><p>1</p><button>+</button>
+                            </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <img  class="imagenProducto" src="./images/frutilla.jpg" alt="">
+                        </div>
+                        <p class="productName">Frutilla</p>
+                        <div class="compraProducto">
+                            <button>comprar</button>
+                            
+                            <button>-</button><p>1</p><button>+</button>
+                            </div>
+                    </div>
+
+                    <div>
+                        <div>
+                            <img  class="imagenProducto" src="./images/naranja.jpg" alt="">
+                        </div>
+                        <p class="productName">Naranja</p>
+                        <div class="compraProducto">
+                        <button>comprar</button>
+                        
+                        <button>-</button><p>1</p><button>+</button>
+                        </div>
+                    </div>
+            
+            </div>
+        </div>
+
+
+        <footer >
+        <div id="resumen"> 
+                <div>
+                    <p>articulos en el carrito:</p>
+                </div>
+
+                <div>
+                    <p>Total:</p>
+                </div>
+            </div>
+        </footer>
+
         <script src="products.js"></script>
         <script src="main.js"></script>
     </body>
