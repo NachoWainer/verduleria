@@ -4,21 +4,24 @@ const stock = [
     name: "MANZANA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/manzana.jpg",
 },
 {
     type: "FRUTA",
     name: "BANANA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/banana.jpg",
 },
 {
     type: "FRUTA",
     name: "PERA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/pera.webp",
 
 },
 {
@@ -26,7 +29,8 @@ const stock = [
     name: "KIWI",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/kiwi.webp",
 
 },
 {
@@ -34,7 +38,8 @@ const stock = [
     name: "FRUTILLA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/frutilla.jpg",
 
 },
 {
@@ -42,7 +47,8 @@ const stock = [
     name: "NARANJA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/naranja.jpg",
 
 },
 {
@@ -50,21 +56,24 @@ const stock = [
     name: "LECHUGA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/lechuga.jpg",
 },
 {
     type: "VERDURA",
     name: "TOMATE",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/tomate.jpg",
 },
 {
     type: "VERDURA",
     name: "CEBOLLA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/cebolla.jpg",
 
 },
 {
@@ -72,7 +81,8 @@ const stock = [
     name: "ZANAHORIA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/zanahoria.jpg",
 
 },
 {
@@ -80,7 +90,8 @@ const stock = [
     name: "PALTA",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/palta.jpg",
 
 },
 {
@@ -88,7 +99,8 @@ const stock = [
     name: "ZAPALLO",
     price: 200,
     stock: 100,
-    img:"",
+    qty: 0,
+    img:"./images/zapallo.jpg",
 
 },
 ];
