@@ -7,17 +7,8 @@ const comprarButton = [];
 const masButton = [];
 const menosButton = [];
 
-
-
-const QTY = []; // ARREGLO AUXILIAR PARA EL MANEJO DE CANTIDAD DE ELEMENTOS DE UN MISMO PRODUCTO A COMPRAR
-QTY.length = stock.length;
-QTY.fill(0);
-
 /*FUNCION QUE CALCULA UN DESCUENTO A PARTIR DE UN TOTAL Y UN PORCENTAJE A DESCONTAR*/
 function descuento(total,desc){return (desc == 0) ? total : (total - ((total * desc)/100));}
-
-function restarQty(cantidad){ return(cantidad > 0) ?  (cantidad--) : cantidad;};
-function sumarQty(cantidad,stock){ return (cantidad < stock) ? cantidad++ : stock;};
 
 /*FUCNION QUE MUSTRA LOS PRODUCTOS DEL STOCK DESEADOS*/
 function filterProducts(tipo){
@@ -44,9 +35,14 @@ function mostrarTodos(){
       `;
         mostrador.append(content);
     });
+    
     for (let i = 0; i < stock.length; i++) {
         comprarButton[i] = document.getElementById(`comprar${i}`);
-        comprarButton[i].addEventListener("click",() => {agregarACarrito(stock[i].name,stock[i].price,stock[i].qty); });
+        comprarButton[i].addEventListener("click",() => {
+            agregarACarrito(stock[i].name,stock[i].price,stock[i].qty);
+            const cantidad = document.getElementById(`cantidad${i}`);
+            stock[i].qty=0; 
+            cantidad.innerHTML=`${stock[i].qty}`;});//reseteo contador de item
 
         menosButton[i] = document.getElementById(`menos${i}`);
         menosButton[i].addEventListener("click",() => {

@@ -16,11 +16,6 @@ let total = 0;
 let cantidad = 0;
 let respuesta = '';
 
-let hola =10;
-
-console.log(sumarQty(10,15));
-console.log(restarQty(5));
-
 // programa pricipal 
 
 
