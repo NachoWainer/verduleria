@@ -2,16 +2,16 @@ const verduras = document.getElementById("verVerduras");
 const frutas = document.getElementById("verFrutas");
 
 verduras.addEventListener("click",() => {
-    verProductos = 'VERDURAS';
-    clearMostrador();
+    verProductos = 'VERDURA';
     mostrarProductos(verProductos);
+    esconderProductos('FRUTA');
   });
 
 frutas.addEventListener("click",() => {
-    verProductos = 'FRUTAS';
-    clearMostrador();
-    mostrarProductos(verProductos);
+  verProductos = 'FRUTA';
+  mostrarProductos(verProductos);
+  esconderProductos('VERDURA');
+});
 
-
-  });
+  
 

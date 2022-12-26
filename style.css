@@ -104,6 +104,10 @@ h1{
     font-family: 'Macondo', cursive;
     font-size: 20px;
 }
+.textCarrito{
+    font-family: 'Macondo', cursive;
+    font-size: 15px;
+}
 
 footer{
     position: fixed;

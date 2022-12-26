@@ -5,7 +5,7 @@ const stock = [
     name: "MANZANA",
     price: 200,
     stock: 100,
-    qty: 0,
+    qty: 3,
     img:"./images/manzana.jpg",
 },
 {
