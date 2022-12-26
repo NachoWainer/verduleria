@@ -9,6 +9,9 @@ Verduleria
 mostrarTodos();
 mostrarProductos("VERDURA");
 esconderProductos("FRUTA");
+
+
+localStorage.clear();
 let aux;
 let menu = '';
 let info = '';

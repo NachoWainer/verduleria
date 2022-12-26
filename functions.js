@@ -88,9 +88,7 @@ function agregarACarrito(nombre,precio,cantidad){
             name: nombre,
             price: precio,
             qty: cantidad,
-        });
-        console.log(nombre) //
-        console.log(carrito.find(elemento => elemento.name == nombre).name)} //
+        })} 
         mostrarCarrito();
     }
     
@@ -102,20 +100,52 @@ function mostrarCarrito(){
   
     compras.innerHTML= "";
     let suma = 0;
-    carrito.forEach(elemento => {
+    if (carrito.length>0){carrito.forEach(elemento => {
         const checkout = document.createElement("li");
         checkout.classList.add("textCarrito");
         checkout.innerHTML = "";
         checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}<\p>`
         compras.append(checkout);
         suma = suma + (elemento.qty * elemento.price);
-    })
+    })}
     total.innerHTML=`TOTAL = $${suma}`;
-    console.log(carrito.length) 
 
-};
+}
+
+function actualiazrStock(){// Actualizo el stock restante luego de una comrpa exitosa
+    carrito.forEach(element => {
+        stock.find(elemento => elemento.name == element.name).stock = stock.find(elemento => elemento.name == element.name).stock - element.qty;         
+    });
+}
+
+function store(){// guardo informacion del id y stock de cada producto en local storage
+    const aux = [];
+    stock.forEach(elemento => {
+        let status = [elemento.id,elemento.stock];
+
+       aux.push(status);
+    })
+    let storage = JSON.stringify(aux);
+    console.log(storage);
+    localStorage.setItem('stock',storage);
+}
+
+function limpiarCarrito(){
+    carrito.length = 0;
+    mostrarCarrito();
+}
+//guardo info en local storage
+/*
+localStorage.setItem(//key , valor);
 
 
+let stock = localstorage.getItem();
+
+localStorage.clear();//elimino todos los elementos del storage
+localStorage.removeItem()//elimino de forma individual
+
+stringify()
+parse()*/
 
 //DEJAR FUNCIONANDO EL CARRITO 
 
