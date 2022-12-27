@@ -8,7 +8,7 @@ Verduleria
 recoverStorage();
 recoverSessionStorage();
 mostrarTodos();
-mostrarProductos("VERDURA");
-esconderProductos("FRUTA");
+mostrarProductos("FRUTA");
+esconderProductos("VERDURA");
 
 
