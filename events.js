@@ -1,7 +1,8 @@
-const verduras = document.getElementById("verVerduras");
-const frutas = document.getElementById("verFrutas");
-const finalizarCompra = document.getElementById("finalizarCompra");
-const voucher = document.getElementById("voucher");
+const verduras = document.getElementById("verVerduras");//BOTON PARA CAMBIAR Y VER VERDURAS
+const frutas = document.getElementById("verFrutas");//BOTON PARA CAMBIAR Y VER FRUTAS 
+const finalizarCompra = document.getElementById("finalizarCompra");//BOTON PARA FINALIZAR COMPRA
+const reset = document.getElementById("resetStock");//BOTON DE RESETEO
+//const voucher = document.getElementById("voucher"); BOTON PARA APLICAR DESCUENTO A COMPRA
 
 verduras.addEventListener("click",() => {
     verProductos = 'VERDURA';
@@ -19,28 +20,32 @@ finalizarCompra.addEventListener("click",() => {
   if (carrito.length>0){
     actualiazrStock();
     store();
-    limpiarCarrito();}
+    limpiarCarrito();
+    storeSession();
+    recoverStorage()}
 });
 
+reset.addEventListener("click",() => {
+    limpiarCarrito();
+    resetStock();
+    resetStockCounter();
+    mostrarProductos('FRUTA');
+    esconderProductos('VERDURA');
+    sessionStorage.clear();
+    localStorage.clear();}
+    
+);
+
+
+
+/* BOTON PARA APLICAR CUPON DE DESCUENTO A COMPRA
 voucher.addEventListener("click",() => {
  desplegarINPUT();// falta hacer 
  verificarValides();// falta hacer
  aplicarDescuento();//falta hacer
 });
-
-
-/*JSON Y STORAGE 
-
-GUARDAR EN LOCAL STORAGE STOCK DE PRODUCTOS !!! Y CANTIDAD DE COMPRAS EFECTUADAS POR EL USUARIO!
-AL FINALIZAR COMPRA DESPLEGAR INPUT PARA INGRESAR CEDULA !, CUANDO UNA CEDULA YA COMPRO AUMENTAR CHANCES PARA OBTENER VOUCHER   
-EN SESSION STORAGE EL CONTENIDO DEL CARRITO DE COMPRAS DE LA SESSION !! 
-
-!!! --- IMPORTANTE
-!! --- MAS O MENOS
-! --- NO TAN IMPORTANTE AHORA
-
-
 */
+
 
   
 

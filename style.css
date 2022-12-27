@@ -85,6 +85,17 @@ h1{
     width: 250px ;
     height: 200px ;
 }
+.productNameStock{
+    display:flex;
+    justify-content: space-between;
+}
+.productStock{
+    font-family: 'Macondo', cursive;
+    font-size: 15px;
+    color:#696969;
+    font-weight: bold;
+
+}
 .masYmenos{
     width: 25px;
     height: 25px;
@@ -92,8 +103,6 @@ h1{
 .title{
     font-size: 50px;
     text-align: center;
-    /*font-family: 'Cinzel', serif;*/
-    
     font-family: 'Satisfy', cursive;
 }
 .subTitle{
@@ -144,6 +153,11 @@ footer{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-auto-flow: column;
+}
+#resetStock{
+    position:absolute;
+    top: 0;
+    width: fit-content;
 }
 
  
