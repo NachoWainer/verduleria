@@ -109,6 +109,10 @@ h1{
     font-family: 'Macondo', cursive;
     font-size: 30px;
 }
+.popUp-subTitle{
+    font-family: 'Macondo', cursive;
+    font-size: 30px !important;
+}
 .text{
     font-family: 'Macondo', cursive;
     font-size: 20px;

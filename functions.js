@@ -190,3 +190,39 @@ function resetStock(){
         element.stock=100;
     })
 }
+
+function alertaCierreAuto(texto,tiempo){
+Swal.fire({
+  title: `${texto}`,
+  timer: tiempo,
+  timerProgressBar: true,
+  customClass: {title: 'popUp-subTitle'}
+})
+}
+function alertaCierreAutoBtn(texto,tiempo){
+    Swal.fire({
+        icon: 'success',
+        title: `${texto}`,
+        timer: tiempo,
+        timerProgressBar: true,
+        customClass: {title: 'popUp-subTitle'}
+      })
+
+}
+async function descuento(){
+    let clave = await Swal.fire({
+      title: 'Enter your IP address',
+      input: 'text',
+      inputLabel: 'Your IP address',
+      inputValue: "",
+      showCancelButton: true,
+      inputValidator: (clave) => {
+        if (!clave) {
+          return 'Debes ingresar un cupón válido!'
+        }
+      }
+      
+    })
+    if (clave.value) console.log(clave.value)
+}
+
