@@ -6,19 +6,21 @@ let productos = filterProducts('VERDURAS'); /*productos que se muestran en panta
 const comprarButton = [];
 const masButton = [];
 const menosButton = [];
+let totalCarrito = 0;
 
 /*FUNCION QUE CALCULA UN DESCUENTO A PARTIR DE UN TOTAL Y UN PORCENTAJE A DESCONTAR*/
 function descuento(total,desc){return (desc == 0) ? total : (total - ((total * desc)/100));}
 
 /*FUCNION QUE MUSTRA LOS PRODUCTOS DEL STOCK DESEADOS*/
-function filterProducts(tipo){
-    let aux;
-    if (tipo=='VERDURAS') aux = stock.filter(elemento => elemento.type == 'VERDURA');
-    else if (tipo == 'FRUTAS') aux = stock.filter(elemento => elemento.type == 'FRUTA'); /* SE UTILIZA ESTRUCTURA ELSE IF PARA LUEGO SEGUIR AGREGANDO MAS ELEMENTOS DE FORMA SENCILLA*/
-    return aux;
+async function filterProducts(tipo){
+    let stockAux = await stock;
+    if (tipo=='VERDURAS') stockAux.filter(elemento => elemento.type == 'VERDURA');
+    else if (tipo == 'FRUTAS') stockAux.filter(elemento => elemento.type == 'FRUTA'); /* SE UTILIZA ESTRUCTURA ELSE IF PARA LUEGO SEGUIR AGREGANDO MAS ELEMENTOS DE FORMA SENCILLA*/
+    return stockAux;
 }
-function mostrarTodos(){
-    stock.forEach((producto) => {
+async function mostrarTodos(){
+    let stockAux = await stock;
+    stockAux.forEach((producto) => {
         const content = document.createElement("div");
         content.innerHTML = `
         <div class="producto ${producto.type}">
@@ -39,26 +41,26 @@ function mostrarTodos(){
         mostrador.append(content);
     });
     
-    for (let i = 0; i < stock.length; i++) {
+    for (let i = 0; i < stockAux.length; i++) {
         comprarButton[i] = document.getElementById(`comprar${i}`);
         comprarButton[i].addEventListener("click",() => {
-            agregarACarrito(stock[i].name,stock[i].price,stock[i].qty);
+            agregarACarrito(stockAux[i].name,stockAux[i].price,stockAux[i].qty);
             const cantidad = document.getElementById(`cantidad${i}`);
-            stock[i].qty=0; 
-            cantidad.innerHTML=`${stock[i].qty}`;
+            stockAux[i].qty=0; 
+            cantidad.innerHTML=`${stockAux[i].qty}`;
             storeSession();});//reseteo contador de item
 
         menosButton[i] = document.getElementById(`menos${i}`);
         menosButton[i].addEventListener("click",() => {
-            if(stock[i].qty > 0){stock[i].qty--};
+            if(stockAux[i].qty > 0){stockAux[i].qty--};
             const cantidad = document.getElementById(`cantidad${i}`);
-            cantidad.innerHTML=`${stock[i].qty}`;});
+            cantidad.innerHTML=`${stockAux[i].qty}`;});
 
         masButton[i] = document.getElementById(`mas${i}`);
         masButton[i].addEventListener("click",() => {
-            if(stock[i].qty < stock[i].stock){stock[i].qty++};
+            if(stockAux[i].qty < stockAux[i].stock){stockAux[i].qty++};
             const cantidad = document.getElementById(`cantidad${i}`);
-            cantidad.innerHTML=`${stock[i].qty}`;
+            cantidad.innerHTML=`${stockAux[i].qty}`;
             
         }); 
     }
@@ -67,14 +69,14 @@ function mostrarTodos(){
 
 // FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
 function esconderProductos(verProductos){
-    productos = document.getElementsByClassName(verProductos);
+    let productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
         productos[i].style.display = "none";
       }
 };
 
 function mostrarProductos(verProductos){
-    productos = document.getElementsByClassName(verProductos);
+   let productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
         productos[i].style.display = "block";
       }
@@ -111,31 +113,35 @@ function mostrarCarrito(){
         suma = suma + (elemento.qty * elemento.price);
     })}
     total.innerHTML=`TOTAL = $${suma}`;
+    totalCarrito = suma;
 
 }
 
 /*FUNCION QUE ACTUALIZA EL STOCK RESTANTE DE LOS PRODUCTOS LUEGO DE UNA COMPRA EXITOSA*/
 
-function actualiazrStock(){
+async function actualiazrStock(){
     carrito.forEach(element => {
-        stock.find(elemento => elemento.name == element.name).stock = stock.find(elemento => elemento.name == element.name).stock - element.qty;
-        const actStock = document.getElementById(`stockProduct${stock.find(elemento => elemento.name == element.name).id}`);
-        actStock.innerHTML=`(stock: ${stock.find(elemento => elemento.name == element.name).stock})`        
+        stockAux.find(elemento => elemento.name == element.name).stock = stockAux.find(elemento => elemento.name == element.name).stock - element.qty;
+        const actStock = document.getElementById(`stockProduct${stockAux.find(elemento => elemento.name == element.name).id}`);
+        actStock.innerHTML=`(stock: ${stockAux.find(elemento => elemento.name == element.name).stock})`        
     });
 }
 
+
 /*FUNCION QUE RESETEA EL CONTADOR DE STOCK DE TODOS LOS ELEMENTOS EN EL MOSTRADOR*/
-function resetStockCounter(){
-    stock.forEach(elemento => {
+async function resetStockCounter(){
+    let stockAux = await stock; 
+    stockAux.forEach(elemento => {
         const actStock = document.getElementById(`stockProduct${elemento.id}`);
         actStock.innerHTML=`(stock: ${elemento.stock})`
     })
 }
 
 /*GUARDO INFORMACION DEL ID Y STOCK RESTANTE DE LOS PRODUCTOS EN EL LOCAL STORAGE*/
-function store(){
+async function store(){
     const aux = [];
-    stock.forEach(elemento => {
+    let stockAux = await stock; 
+    stockAux.forEach(elemento => {
         let status = [elemento.id,elemento.stock];
         aux.push(status);
     })
@@ -150,12 +156,13 @@ function limpiarCarrito(){
 }
 
 /*FUNCION QUE RECUPERA INFORMACION DEL STOCK RESTANTE DEL LOCAL STORAGE*/
-function recoverStorage(){
+async function recoverStorage(){
     if (localStorage.getItem('stock')){
         let store = localStorage.getItem('stock');
         store=JSON.parse(store);
+        let aux = await stock
         store.forEach(element => {
-            if(stock.find(elemento => elemento.id == element[0]))stock.find(elemento => elemento.id == element[0]).stock=element[1];
+            if(aux.find(elemento => elemento.id == element[0]))aux.find(elemento => elemento.id == element[0]).stock=element[1];
         })
     }
 }
@@ -172,20 +179,22 @@ function storeSession(){
 }
 
 /*FUNCION QUE MUESTRA CONTENIDO DEL CARRITO A PARTIR DE LO QUE HAY GUARDADO EN LA SESSION STORAGE*/
-function recoverSessionStorage(){
+async function recoverSessionStorage(){
     if (sessionStorage.getItem('carrito')){
     let recover = sessionStorage.getItem('carrito');
     recover=JSON.parse(recover);
     if (recover.length != 0){
+        let auxStock = await stock;
         recover.forEach(element => {
-            agregarACarrito(element[0],parseInt(stock.find(elemento => elemento.name == element[0]).price),parseInt(element[1]));
+            agregarACarrito(element[0],parseInt(auxStock.find(elemento => elemento.name == element[0]).price),parseInt(element[1]));
         })
     }
     mostrarCarrito();}
 }
 /*REESTABLECE LOS VALORES DEL STOCK*/
-function resetStock(){
-    stock.forEach(element => {
+async function resetStock(){
+let stockAux = await stock;
+    stockAux.forEach(element => {
         element.qty = 0;
         element.stock=100;
     })
@@ -209,11 +218,31 @@ function alertaCierreAutoBtn(texto,tiempo){
       })
 
 }
-async function descuento(){
+function aplicarDescuento(valor){
+    let precio = document.getElementById("total");
+    switch (valor) {
+        case "VEINTE":
+            totalCarrito=descuento(totalCarrito,20);
+            precio.innerHTML=`TOTAL = $${totalCarrito}`;
+            break;
+        case "QUINCE":
+            totalCarrito=descuento(totalCarrito,15);
+            precio.innerHTML=`TOTAL = $${totalCarrito}`;
+            break;
+        case "CINCUENTA":
+            totalCarrito=descuento(totalCarrito,50);
+            precio.innerHTML=`TOTAL = $${totalCarrito}`;
+            break;
+        default:
+            totalCarrito=descuento(total,0);
+            break;
+    }
+}
+async function desc(){
     let clave = await Swal.fire({
-      title: 'Enter your IP address',
+      title: 'Ingrese un código de cupón válido',
       input: 'text',
-      inputLabel: 'Your IP address',
+      inputLabel: 'Código',
       inputValue: "",
       showCancelButton: true,
       inputValidator: (clave) => {
@@ -223,6 +252,18 @@ async function descuento(){
       }
       
     })
-    if (clave.value) console.log(clave.value)
-}
+    if (clave.value){
+        let cupones = await fetch('cupon.json')
+        infoCupon = await cupones.json();
+        console.log(infoCupon)
+        
+        if (infoCupon.find(elemento => elemento.cuponId == clave.value)) aplicarDescuento(clave.value);}
+    
+
+    }
+
+
+        
+    
+
 

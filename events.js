@@ -43,7 +43,7 @@ reset.addEventListener("click",() => {
 
 // BOTON PARA APLICAR CUPON DE DESCUENTO A COMPRA
 cupon.addEventListener("click",() => {
- descuento();
+ desc();
 });
 
 
