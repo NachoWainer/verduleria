@@ -20,14 +20,11 @@ frutas.addEventListener("click",() => {
 
 finalizarCompra.addEventListener("click",() => {
   if (carrito.length>0){
-    actualiazrStock();
-    store();
-    limpiarCarrito();
-    storeSession();
-    recoverStorage();
+    actualizarStock();
+   
     alertaCierreAutoBtn("compra exitosa!",3000)}
 
-    else{alertaCierreAutoBtn("Tu carrito esta vacío!",1500);}
+    else{alertaCierreAuto("Tu carrito esta vacío!",1500);}
 });
 
 

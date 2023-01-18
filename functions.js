@@ -8,6 +8,7 @@ const masButton = [];
 const menosButton = [];
 let totalCarrito = 0;
 
+
 /*FUNCION QUE CALCULA UN DESCUENTO A PARTIR DE UN TOTAL Y UN PORCENTAJE A DESCONTAR*/
 function descuento(total,desc){return (desc == 0) ? total : (total - ((total * desc)/100));}
 
@@ -68,14 +69,16 @@ async function mostrarTodos(){
 }
 
 // FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
-function esconderProductos(verProductos){
+async function esconderProductos(verProductos){
+    await stock;
     let productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
         productos[i].style.display = "none";
       }
 };
 
-function mostrarProductos(verProductos){
+async function mostrarProductos(verProductos){
+    await stock;
    let productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
         productos[i].style.display = "block";
@@ -119,12 +122,21 @@ function mostrarCarrito(){
 
 /*FUNCION QUE ACTUALIZA EL STOCK RESTANTE DE LOS PRODUCTOS LUEGO DE UNA COMPRA EXITOSA*/
 
-async function actualiazrStock(){
-    carrito.forEach(element => {
-        stockAux.find(elemento => elemento.name == element.name).stock = stockAux.find(elemento => elemento.name == element.name).stock - element.qty;
-        const actStock = document.getElementById(`stockProduct${stockAux.find(elemento => elemento.name == element.name).id}`);
-        actStock.innerHTML=`(stock: ${stockAux.find(elemento => elemento.name == element.name).stock})`        
+function actualizarStock(){
+    console.log(carrito)
+    fetch("stock.json")
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        console.log(carrito)
+        store();
+        limpiarCarrito();
+        storeSession();
+        recoverStorage();
     });
+    
+
+      
 }
 
 

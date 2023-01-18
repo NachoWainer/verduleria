@@ -8,7 +8,5 @@ async function recoverStock(){
 
 
 let stock = recoverStock();
-console.log('HOLAAAAAAAA')
-console.log(stock)
-console.log('holaaaa')
+
 const carrito = [];
