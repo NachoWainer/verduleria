@@ -1,4 +1,4 @@
-let mostrador = document.getElementById("board");
+
 let compras = document.getElementById("articulosCarrito"); 
 
 let productos = filterProducts('VERDURAS'); /*productos que se muestran en pantalla*/
@@ -17,68 +17,8 @@ function filterProducts(tipo){
     else if (tipo == 'FRUTAS') aux = stock.filter(elemento => elemento.type == 'FRUTA'); /* SE UTILIZA ESTRUCTURA ELSE IF PARA LUEGO SEGUIR AGREGANDO MAS ELEMENTOS DE FORMA SENCILLA*/
     return aux;
 }
-function mostrarTodos(){
-    stock.forEach((producto) => {
-        const content = document.createElement("div");
-        content.innerHTML = `
-        <div class="producto ${producto.type}">
-        <div>
-            <img class="imagenProducto" src="${producto.img}" alt="">
-        </div>
-        <div class="productNameStock">
-        <p class="productName">${producto.name}</p>
-        <p id="stockProduct${producto.id}" class="productStock">(stock: ${producto.stock})</p>
-        </div>
-        <p class="productName">$ ${producto.price}</p>
-        <div class="compraProducto">
-            <button id="comprar${producto.id}" class="text">comprar</button>
-            <button id="menos${producto.id}" class="masYmenos">-</button><p id="cantidad${producto.id}" class="text">${producto.qty}</p><button id="mas${producto.id}" class="masYmenos">+</button>
-            </div>
-        </div>
-      `;
-        mostrador.append(content);
-    });
-    
-    for (let i = 0; i < stock.length; i++) {
-        comprarButton[i] = document.getElementById(`comprar${i}`);
-        comprarButton[i].addEventListener("click",() => {
-            agregarACarrito(stock[i].name,stock[i].price,stock[i].qty);
-            const cantidad = document.getElementById(`cantidad${i}`);
-            stock[i].qty=0; 
-            cantidad.innerHTML=`${stock[i].qty}`;
-            storeSession();});//reseteo contador de item
 
-        menosButton[i] = document.getElementById(`menos${i}`);
-        menosButton[i].addEventListener("click",() => {
-            if(stock[i].qty > 0){stock[i].qty--};
-            const cantidad = document.getElementById(`cantidad${i}`);
-            cantidad.innerHTML=`${stock[i].qty}`;});
 
-        masButton[i] = document.getElementById(`mas${i}`);
-        masButton[i].addEventListener("click",() => {
-            if(stock[i].qty < stock[i].stock){stock[i].qty++};
-            const cantidad = document.getElementById(`cantidad${i}`);
-            cantidad.innerHTML=`${stock[i].qty}`;
-            
-        }); 
-    }
-
-}
-
-// FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
-function esconderProductos(verProductos){
-    productos = document.getElementsByClassName(verProductos);
-    for (let i = 0; i < productos.length; i++) {
-        productos[i].style.display = "none";
-      }
-};
-
-function mostrarProductos(verProductos){
-    productos = document.getElementsByClassName(verProductos);
-    for (let i = 0; i < productos.length; i++) {
-        productos[i].style.display = "block";
-      }
-};
 
 
 /*FUNCION QUE AGREGA UN PRODUCTO AL CARRITO, SUS PARAMETROS DE ENTRADA SON NOMBRE CANTIDAD  Y PRECIO */
@@ -136,8 +76,7 @@ function resetStockCounter(){
 function store(){
     const aux = [];
     stock.forEach(elemento => {
-        let status = [elemento.id,elemento.stock];
-        aux.push(status);
+        aux.push(elemento); 
     })
     let storage = JSON.stringify(aux);
     localStorage.setItem('stock',storage);
@@ -150,7 +89,7 @@ function limpiarCarrito(){
 }
 
 /*FUNCION QUE RECUPERA INFORMACION DEL STOCK RESTANTE DEL LOCAL STORAGE*/
-function recoverStorage(){
+async function recoverStorage(){
     if (localStorage.getItem('stock')){
         let store = localStorage.getItem('stock');
         store=JSON.parse(store);

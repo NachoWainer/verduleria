@@ -22,9 +22,8 @@
 
 recoverStorage();
 recoverSessionStorage();
-mostrarTodos();
-mostrarProductos("FRUTA");
-esconderProductos("VERDURA");
+
+
 
 
 

@@ -27,7 +27,7 @@ finalizarCompra.addEventListener("click",() => {
     recoverStorage();
     alertaCierreAutoBtn("compra exitosa!",3000)}
 
-    else{alertaCierreAutoBtn("Tu carrito esta vacío!",1500);}
+    else{alertaCierreAuto("Tu carrito esta vacío!",1500);}
 });
 
 

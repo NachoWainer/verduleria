@@ -1,120 +1,129 @@
-const stock = [
-{
-    id: 0,
-    type: "FRUTA",
-    name: "MANZANA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/manzana.jpg",
-},
-{
-    id: 1,
-    type: "FRUTA",
-    name: "BANANA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/banana.jpg",
-},
-{   
-    id: 2,
-    type: "FRUTA",
-    name: "PERA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/pera.webp",
+const stock = [];
+let mostrador = document.getElementById("board");
 
-},
-{
-    id: 3,
-    type: "FRUTA",
-    name: "KIWI",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/kiwi.webp",
+// FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
+function esconderProductos(verProductos){
+    productos = document.getElementsByClassName(verProductos);
+    for (let i = 0; i < productos.length; i++) {
+        productos[i].style.display = "none";
+      }
+};
 
-},
-{
-    id: 4,
-    type: "FRUTA",
-    name: "FRUTILLA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/frutilla.jpg",
+function mostrarProductos(verProductos){
+    productos = document.getElementsByClassName(verProductos);
+    for (let i = 0; i < productos.length; i++) {
+        productos[i].style.display = "block";
+      }
+};
 
-},
-{
-    id: 5,
-    type: "FRUTA",
-    name: "NARANJA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/naranja.jpg",
+async function recoverStock(){
+    const resp = await fetch("stock.json")
+    const data = await resp.json()
 
-},
-{
-    id: 6,
-    type: "VERDURA",
-    name: "LECHUGA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/lechuga.jpg",
-},
-{
-    id: 7,
-    type: "VERDURA",
-    name: "TOMATE",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/tomate.jpg",
-},
-{
-    id: 8,
-    type: "VERDURA",
-    name: "CEBOLLA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/cebolla.jpg",
+    data.forEach(element => {stock.push(element)
+        
+    });
 
-},
-{
-    id: 9,
-    type: "VERDURA",
-    name: "ZANAHORIA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/zanahoria.jpg",
+    if (localStorage.getItem("stock") === null){
+   stock.forEach((producto) => {
+    const content = document.createElement("div");
+    content.innerHTML = `
+    <div class="producto ${producto.type}">
+    <div>
+        <img class="imagenProducto" src="${producto.img}" alt="">
+    </div>
+    <div class="productNameStock">
+    <p class="productName">${producto.name}</p>
+    <p id="stockProduct${producto.id}" class="productStock">(stock: ${producto.stock})</p>
+    </div>
+    <p class="productName">$ ${producto.price}</p>
+    <div class="compraProducto">
+        <button id="comprar${producto.id}" class="text">comprar</button>
+        <button id="menos${producto.id}" class="masYmenos">-</button><p id="cantidad${producto.id}" class="text">${producto.qty}</p><button id="mas${producto.id}" class="masYmenos">+</button>
+        </div>
+    </div>
+  `;
+    mostrador.append(content);
+});
 
-},
-{
-    id: 10,
-    type: "VERDURA",
-    name: "PALTA",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/palta.jpg",
+for (let i = 0; i < stock.length; i++) {
+    comprarButton[i] = document.getElementById(`comprar${i}`);
+    comprarButton[i].addEventListener("click",() => {
+        agregarACarrito(stock[i].name,stock[i].price,stock[i].qty);
+        const cantidad = document.getElementById(`cantidad${i}`);
+        stock[i].qty=1; 
+        cantidad.innerHTML=`${stock[i].qty}`;
+        storeSession();});//reseteo contador de item
 
-},
-{
-    id: 11,
-    type: "VERDURA",
-    name: "ZAPALLO",
-    price: 200,
-    stock: 100,
-    qty: 0,
-    img:"./images/zapallo.jpg",
+    menosButton[i] = document.getElementById(`menos${i}`);
+    menosButton[i].addEventListener("click",() => {
+        if(stock[i].qty > 0){stock[i].qty--};
+        const cantidad = document.getElementById(`cantidad${i}`);
+        cantidad.innerHTML=`${stock[i].qty}`;});
 
-},
-];
+    masButton[i] = document.getElementById(`mas${i}`);
+    masButton[i].addEventListener("click",() => {
+        if(stock[i].qty < stock[i].stock){stock[i].qty++};
+        const cantidad = document.getElementById(`cantidad${i}`);
+        cantidad.innerHTML=`${stock[i].qty}`;
+        
+    }); 
+}
+store();
+}
+else {
+    let stockAux = localStorage.getItem('stock');
+    stockAux = JSON.parse(stockAux);
+    stockAux.forEach((producto) => {
+        const content = document.createElement("div");
+        content.innerHTML = `
+        <div class="producto ${producto.type}">
+        <div>
+            <img class="imagenProducto" src="${producto.img}" alt="">
+        </div>
+        <div class="productNameStock">
+        <p class="productName">${producto.name}</p>
+        <p id="stockProduct${producto.id}" class="productStock">(stock: ${producto.stock})</p>
+        </div>
+        <p class="productName">$ ${producto.price}</p>
+        <div class="compraProducto">
+            <button id="comprar${producto.id}" class="text">comprar</button>
+            <button id="menos${producto.id}" class="masYmenos">-</button><p id="cantidad${producto.id}" class="text">${producto.qty}</p><button id="mas${producto.id}" class="masYmenos">+</button>
+            </div>
+        </div>
+      `;
+        mostrador.append(content);
+    });
+    
+    for (let i = 0; i < stockAux.length; i++) {
+        comprarButton[i] = document.getElementById(`comprar${i}`);
+        comprarButton[i].addEventListener("click",() => {
+            agregarACarrito(stockAux[i].name,stockAux[i].price,stockAux[i].qty);
+            const cantidad = document.getElementById(`cantidad${i}`);
+            stockAux[i].qty=1; 
+            cantidad.innerHTML=`${stockAux[i].qty}`;
+            storeSession();});//reseteo contador de item
+    
+        menosButton[i] = document.getElementById(`menos${i}`);
+        menosButton[i].addEventListener("click",() => {
+            if(stockAux[i].qty > 0){stockAux[i].qty--};
+            const cantidad = document.getElementById(`cantidad${i}`);
+            cantidad.innerHTML=`${stockAux[i].qty}`;});
+    
+        masButton[i] = document.getElementById(`mas${i}`);
+        masButton[i].addEventListener("click",() => {
+            if(stockAux[i].qty < stockAux[i].stock){stockAux[i].qty++};
+            const cantidad = document.getElementById(`cantidad${i}`);
+            cantidad.innerHTML=`${stockAux[i].qty}`;
+            
+        }); 
+    }
+}
 
+mostrarProductos("FRUTA");
+esconderProductos("VERDURA");
+
+}
+
+recoverStock();
 const carrito = [];
