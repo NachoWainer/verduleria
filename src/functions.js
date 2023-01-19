@@ -58,7 +58,7 @@ function mostrarCarrito(){
         const checkout = document.createElement("li");
         checkout.classList.add("textCarrito");
         checkout.innerHTML = "";
-        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}  <button id="eliminar${elemento.id}"><img src="./images/icons/trash-can.png"></button><\p> `
+        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}  <button id="eliminar${elemento.id}"><img src="./public/images/icons/trash-can.png"></button><\p> `
         compras.append(checkout);
         suma = suma + (elemento.qty * elemento.price);
         
@@ -141,6 +141,8 @@ function storeSession(){
    sessionStorage.setItem('carrito',storage);
 }
 
+
+// FUNCION PARA OBTENER EL SESSION STORAGE 
 function recoverSessionStorage(){
     if (sessionStorage.getItem('carrito')){
     let recover = sessionStorage.getItem('carrito');
@@ -162,7 +164,7 @@ function resetStock(){
     })
 }
 
-
+//FUNCIONES PARA DESPLEGAR ALERTS
 function alertaCierreAuto(texto,tiempo){
 Swal.fire({
   title: `${texto}`,
@@ -181,32 +183,5 @@ function alertaCierreAutoBtn(texto,tiempo){
       })
 
 }
-/*async function descuento(){
-    let key;
-    let clave = await Swal.fire({
-      title: 'Ingrese un código válido',
-      input: 'text',
-      inputLabel: 'Código cupón',
-      inputValue: "",
-      showCancelButton: true,
-      allowEnterKey:  true,
-      inputValidator: (clave) => {key = clave;}})
-      
-      
-      if (!key  && !vouchers.find(elemento=> elemento === key)) {
-        return 'Debes ingresar un cupón válido!'
-      }
-      else {
-         let auxInd = vouchers.find(element => element.type == key).id
-         if (auxInd.id <= 4) desc = 20
-         else if (auxInd.id <= 8) desc = 15
-         else desc = 50 
-      
-         suma = descuento(suma,desc)
-         const total = document.getElementById("total");
-         total.innerHTML=`TOTAL = $${suma}`; 
-    
-    }
-}
-      */
+
 

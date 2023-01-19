@@ -1,7 +1,7 @@
 const stock = [];
 let mostrador = document.getElementById("board");
 
-// FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
+// FUNCION QUE OCULTA PRODUCTOS EN LA PAGINA  
 function esconderProductos(verProductos){
     productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
@@ -9,6 +9,7 @@ function esconderProductos(verProductos){
       }
 };
 
+// FUNCION QUE MUESTRA AL USUARIO PRODUCTOS EN LA PAGINA
 function mostrarProductos(verProductos){
     productos = document.getElementsByClassName(verProductos);
     for (let i = 0; i < productos.length; i++) {
@@ -16,6 +17,8 @@ function mostrarProductos(verProductos){
       }
 };
 
+
+// FUNCION QUE OBTIENE DATOS DEL JSON CON LOS PRODUCTOS Y LOS DESPLIEGA EN LA PAGINA
 async function recoverStock(){
     const resp = await fetch("stock.json")
     const data = await resp.json()
@@ -29,7 +32,7 @@ async function recoverStock(){
     content.innerHTML = `
     <div class="producto ${producto.type}">
     <div>
-        <img class="imagenProducto" src="${producto.img}" alt="">
+        <img class="imagenProducto" src="./public/${producto.img}" alt="">
     </div>
     <div class="productNameStock">
     <p class="productName">${producto.name}</p>

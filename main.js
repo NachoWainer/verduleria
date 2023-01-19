@@ -3,24 +3,9 @@
 //-------------Verduleria----------//
 
 //MAIN 
-
-// chequear contenido del storage
-
-
-//enviar pedidos por mail, al coincretar compra 
-
-// cambiar forma de pesaje de frutas y verduras por gramos y kilos en vez de unidades 
-
-
-
-
-
-//CHEQUEAR CUPONES ACTUALES 
-//GUARDAR EN STORAGE 
-
+// AL INICIAR REVISO EL ESTADO DE LOS STORAGES Y EL ESTADO DEL CLIMA PARA ESTABLECER LA TEMATICA DE LA PAGINA 
 recoverStorage();
 recoverSessionStorage();
-
 getSeason("montevideo")
 
 
