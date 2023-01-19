@@ -32,13 +32,14 @@ finalizarCompra.addEventListener("click",() => {
 
 
 reset.addEventListener("click",() => {
-    limpiarCarrito();
+  getSeason("montevideo")  
+  /*limpiarCarrito();
     resetStock();
     resetStockCounter();
     mostrarProductos('FRUTA');
     esconderProductos('VERDURA');
     sessionStorage.clear();
-    localStorage.clear();}  
+localStorage.clear();*/}  
 );
 
 // BOTON PARA APLICAR CUPON DE DESCUENTO A COMPRA

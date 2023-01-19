@@ -7,6 +7,8 @@ const comprarButton = [];
 const masButton = [];
 const menosButton = [];
 
+
+
 /*FUNCION QUE CALCULA UN DESCUENTO A PARTIR DE UN TOTAL Y UN PORCENTAJE A DESCONTAR*/
 function descuento(total,desc){return (desc == 0) ? total : (total - ((total * desc)/100));}
 
@@ -16,6 +18,13 @@ function filterProducts(tipo){
     if (tipo=='VERDURAS') aux = stock.filter(elemento => elemento.type == 'VERDURA');
     else if (tipo == 'FRUTAS') aux = stock.filter(elemento => elemento.type == 'FRUTA'); /* SE UTILIZA ESTRUCTURA ELSE IF PARA LUEGO SEGUIR AGREGANDO MAS ELEMENTOS DE FORMA SENCILLA*/
     return aux;
+}
+
+async function getSeason(){
+let season;
+const resp = await fetch()
+
+return season 
 }
 
 
@@ -129,6 +138,7 @@ function resetStock(){
         element.stock=100;
     })
 }
+
 
 function alertaCierreAuto(texto,tiempo){
 Swal.fire({

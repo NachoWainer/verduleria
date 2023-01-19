@@ -7,13 +7,13 @@
 html {
     font-size: 62.5% !important;
   }
-body{
-background-color: #96A13A;
-}
-header{
-    background-color: #CB793A;
-    border-bottom: 5px #55251D solid;
 
+header{
+    border-bottom: 5px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-style: solid;
 }
 h1{
     display: flex;
@@ -62,8 +62,17 @@ h1{
     padding-left: 20px;
     padding-right: 20px;
 
+    
+    border-radius: 5px;
+    border-style: solid;
+}
+.color-Primary{
     background-color: #CB793A;
-    border: 5px #55251D solid;
+    border-color: #55251D
+}
+
+.color-Secondary{
+    background-color: #96A13A;
 }
 
 .producto{
@@ -105,6 +114,11 @@ h1{
     text-align: center;
     font-family: 'Satisfy', cursive;
 }
+.subSubtitle{
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Satisfy', cursive;
+}
 .subTitle{
     font-family: 'Macondo', cursive;
     font-size: 30px;
@@ -129,10 +143,12 @@ footer{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
 
-
     width: 100%;
-    background-color: #CB793A;
-    border-top: 5px #55251D solid;
+    border-top: 5px;
+    border-left: 0px;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-style: solid;
 }
 #footerTotal{
     display: flex;

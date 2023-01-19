@@ -21,7 +21,7 @@
 //GUARDAR EN STORAGE 
 
 recoverStorage();
-recoverSessionStorage();
+//recoverSessionStorage();
 
 
 

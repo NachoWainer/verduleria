@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="style.css">
     
 </head>
-    <body>
-    <header>
+    <body class="color-Secondary">
+    <header class = "color-Primary">
         <h1 class="title">Frutas y Verduras</h1>
+        <div class="subSubtitle" id="weather"></div>
         <button id="resetStock">reset</button>
     </header>
 
@@ -24,12 +25,12 @@
             </div>
         </div>
         <div id="holder">
-            <div id="board">  
+            <div id="board" class = "color-Primary">  
             </div>
         </div>
 
 
-        <footer >
+        <footer class = "color-Primary">
 
                 <div>
                     <p class="subTitle">Artículos en el carrito:</p>
@@ -47,6 +48,7 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="products.js"></script>
         <script src="functions.js"></script>
+        <script src="api.js"></script>
         <script src="events.js"></script>
         <script src="main.js"></script>
     </body>
