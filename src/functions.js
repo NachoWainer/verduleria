@@ -58,7 +58,7 @@ function mostrarCarrito(){
         const checkout = document.createElement("li");
         checkout.classList.add("textCarrito");
         checkout.innerHTML = "";
-        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}  <button id="eliminar${elemento.id}"><img src="./public/images/icons/trash-can.png"></button><\p> `
+        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}  <button id="eliminar${elemento.id}"><img src="./images/icons/trash-can.png"></button><\p> `
         compras.append(checkout);
         suma = suma + (elemento.qty * elemento.price);
         
