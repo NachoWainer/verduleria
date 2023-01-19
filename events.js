@@ -2,9 +2,7 @@ const verduras = document.getElementById("verVerduras");//BOTON PARA CAMBIAR Y V
 const frutas = document.getElementById("verFrutas");//BOTON PARA CAMBIAR Y VER FRUTAS 
 const finalizarCompra = document.getElementById("finalizarCompra");//BOTON PARA FINALIZAR COMPRA
 const reset = document.getElementById("resetStock");//BOTON DE RESETEO
-//const cupon = document.getElementById("voucher");//BOTON DE CUPON DE DESCUENTO
 
-//const voucher = document.getElementById("voucher"); BOTON PARA APLICAR DESCUENTO A COMPRA
 
 verduras.addEventListener("click",() => {
     verProductos = 'VERDURA';
@@ -41,11 +39,7 @@ reset.addEventListener("click",() => {
     localStorage.clear();}  
 );
 
-// BOTON PARA APLICAR CUPON DE DESCUENTO A COMPRA
-/*cupon.addEventListener("click",(e) => {
-  e.preventDefault();
- descuento();
-});*/
+
 
 
 

@@ -6,7 +6,6 @@ async function getSeason(city){
     const data = await response.json()
     let weather;
     weather = data.weather[0].main;
-    console.log(weather)
     let colorPrimary = document.getElementsByClassName("color-Primary")
     let colorSecondary = document.getElementsByClassName("color-Secondary")
     weatherState.innerHTML =`<h2> Clima ${weather}</h2>`
