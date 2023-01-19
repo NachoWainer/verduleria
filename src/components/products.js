@@ -32,7 +32,7 @@ async function recoverStock(){
     content.innerHTML = `
     <div class="producto ${producto.type}">
     <div>
-        <img class="imagenProducto" src="./public/${producto.img}" alt="">
+        <img class="imagenProducto" src="${producto.img}" alt="">
     </div>
     <div class="productNameStock">
     <p class="productName">${producto.name}</p>
