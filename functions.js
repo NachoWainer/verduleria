@@ -7,6 +7,7 @@ const comprarButton = [];
 const masButton = [];
 const menosButton = [];
 const eliminarDeCarrito = [];
+let suma = 0;
 
 
 
@@ -52,7 +53,7 @@ function mostrarCarrito(){
     const total = document.getElementById("total");
   
     compras.innerHTML= "";
-    let suma = 0;
+        suma = 0;
     if (carrito.length>0){carrito.forEach(elemento => {
         const checkout = document.createElement("li");
         checkout.classList.add("textCarrito");
@@ -72,7 +73,6 @@ function mostrarCarrito(){
         eliminarDeCarrito[carrito[i].id].addEventListener("click",() => {
             compras.innerHTML= "";
             carrito.splice(i,1)
-            suma = 0;
             mostrarCarrito()
             storeSession()
             })
@@ -181,20 +181,32 @@ function alertaCierreAutoBtn(texto,tiempo){
       })
 
 }
-async function descuento(){
+/*async function descuento(){
+    let key;
     let clave = await Swal.fire({
-      title: 'Enter your IP address',
+      title: 'Ingrese un código válido',
       input: 'text',
-      inputLabel: 'Your IP address',
+      inputLabel: 'Código cupón',
       inputValue: "",
       showCancelButton: true,
-      inputValidator: (clave) => {
-        if (!clave) {
-          return 'Debes ingresar un cupón válido!'
-        }
-      }
+      allowEnterKey:  true,
+      inputValidator: (clave) => {key = clave;}})
       
-    })
-    if (clave.value) console.log(clave.value)
+      
+      if (!key  && !vouchers.find(elemento=> elemento === key)) {
+        return 'Debes ingresar un cupón válido!'
+      }
+      else {
+         let auxInd = vouchers.find(element => element.type == key).id
+         if (auxInd.id <= 4) desc = 20
+         else if (auxInd.id <= 8) desc = 15
+         else desc = 50 
+      
+         suma = descuento(suma,desc)
+         const total = document.getElementById("total");
+         total.innerHTML=`TOTAL = $${suma}`; 
+    
+    }
 }
+      */
 

@@ -1,7 +1,6 @@
 const stock = [];
 let mostrador = document.getElementById("board");
 
-
 // FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
 function esconderProductos(verProductos){
     productos = document.getElementsByClassName(verProductos);
@@ -119,12 +118,12 @@ else {
         }); 
     }
 }
-
 mostrarProductos("FRUTA");
 esconderProductos("VERDURA");
-/*FUNCION QUE MUESTRA CONTENIDO DEL CARRITO A PARTIR DE LO QUE HAY GUARDADO EN LA SESSION STORAGE*/
-
 }
 
 recoverStock();
 const carrito = [];
+
+
+ 
