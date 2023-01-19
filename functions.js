@@ -6,6 +6,7 @@ let productos = filterProducts('VERDURAS'); /*productos que se muestran en panta
 const comprarButton = [];
 const masButton = [];
 const menosButton = [];
+const eliminarDeCarrito = [];
 
 
 
@@ -31,7 +32,7 @@ return season
 
 
 /*FUNCION QUE AGREGA UN PRODUCTO AL CARRITO, SUS PARAMETROS DE ENTRADA SON NOMBRE CANTIDAD  Y PRECIO */
-function agregarACarrito(nombre,precio,cantidad){
+function agregarACarrito(nombre,precio,cantidad,id){
     if (cantidad>0){
         if (carrito.find(elemento => elemento.name == nombre)) carrito.find(elemento => elemento.name == nombre).qty += cantidad;
         else{
@@ -39,6 +40,7 @@ function agregarACarrito(nombre,precio,cantidad){
             name: nombre,
             price: precio,
             qty: cantidad,
+            id: id,
         })} 
         mostrarCarrito();
     }
@@ -55,13 +57,33 @@ function mostrarCarrito(){
         const checkout = document.createElement("li");
         checkout.classList.add("textCarrito");
         checkout.innerHTML = "";
-        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}<\p>`
+        checkout.innerHTML = `<p> ${elemento.name} $${elemento.price}x${elemento.qty}  <button id="eliminar${elemento.id}"><img src="./images/icons/trash-can.png"></button><\p> `
         compras.append(checkout);
         suma = suma + (elemento.qty * elemento.price);
+        
+        
+
     })}
     total.innerHTML=`TOTAL = $${suma}`;
+    
+   
+    for (let i = 0; i < carrito.length; i++) {
+        eliminarDeCarrito[carrito[i].id] = document.getElementById(`eliminar${carrito[i].id}`)
+        eliminarDeCarrito[carrito[i].id].addEventListener("click",() => {
+            compras.innerHTML= "";
+            carrito.splice(i,1)
+            suma = 0;
+            mostrarCarrito()
+            storeSession()
+            })
+    }
+    
+    
 
+   
 }
+
+
 
 /*FUNCION QUE ACTUALIZA EL STOCK RESTANTE DE LOS PRODUCTOS LUEGO DE UNA COMPRA EXITOSA*/
 
@@ -112,25 +134,26 @@ async function recoverStorage(){
 function storeSession(){
     const aux=[];
     carrito.forEach(elemento => {
-        let status = [elemento.name,elemento.qty];
+        let status = [elemento.name,elemento.price,elemento.qty,elemento.id];
        aux.push(status);
     })
     let storage = JSON.stringify(aux);
    sessionStorage.setItem('carrito',storage);
 }
 
-/*FUNCION QUE MUESTRA CONTENIDO DEL CARRITO A PARTIR DE LO QUE HAY GUARDADO EN LA SESSION STORAGE*/
 function recoverSessionStorage(){
     if (sessionStorage.getItem('carrito')){
     let recover = sessionStorage.getItem('carrito');
     recover=JSON.parse(recover);
     if (recover.length != 0){
         recover.forEach(element => {
-            agregarACarrito(element[0],parseInt(stock.find(elemento => elemento.name == element[0]).price),parseInt(element[1]));
+            agregarACarrito(element[0],parseInt(element[1]),parseInt(element[2]),parseInt(element[3]));
         })
     }
     mostrarCarrito();}
 }
+
+
 /*REESTABLECE LOS VALORES DEL STOCK*/
 function resetStock(){
     stock.forEach(element => {

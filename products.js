@@ -1,6 +1,7 @@
 const stock = [];
 let mostrador = document.getElementById("board");
 
+
 // FUNCION QUE DESPLIEGA EN LA PAGINA LOS PRODUCTOS 
 function esconderProductos(verProductos){
     productos = document.getElementsByClassName(verProductos);
@@ -20,8 +21,7 @@ async function recoverStock(){
     const resp = await fetch("stock.json")
     const data = await resp.json()
 
-    data.forEach(element => {stock.push(element)
-        
+    data.forEach(element => {stock.push(element)  
     });
 
     if (localStorage.getItem("stock") === null){
@@ -49,7 +49,7 @@ async function recoverStock(){
 for (let i = 0; i < stock.length; i++) {
     comprarButton[i] = document.getElementById(`comprar${i}`);
     comprarButton[i].addEventListener("click",() => {
-        agregarACarrito(stock[i].name,stock[i].price,stock[i].qty);
+        agregarACarrito(stock[i].name,stock[i].price,stock[i].qty,stock[i].id);
         const cantidad = document.getElementById(`cantidad${i}`);
         stock[i].qty=1; 
         cantidad.innerHTML=`${stock[i].qty}`;
@@ -98,7 +98,7 @@ else {
     for (let i = 0; i < stockAux.length; i++) {
         comprarButton[i] = document.getElementById(`comprar${i}`);
         comprarButton[i].addEventListener("click",() => {
-            agregarACarrito(stockAux[i].name,stockAux[i].price,stockAux[i].qty);
+            agregarACarrito(stockAux[i].name,stockAux[i].price,stockAux[i].qty,stockAux[i].id);
             const cantidad = document.getElementById(`cantidad${i}`);
             stockAux[i].qty=1; 
             cantidad.innerHTML=`${stockAux[i].qty}`;
@@ -122,6 +122,7 @@ else {
 
 mostrarProductos("FRUTA");
 esconderProductos("VERDURA");
+/*FUNCION QUE MUESTRA CONTENIDO DEL CARRITO A PARTIR DE LO QUE HAY GUARDADO EN LA SESSION STORAGE*/
 
 }
 

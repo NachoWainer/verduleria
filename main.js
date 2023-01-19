@@ -6,8 +6,6 @@
 
 // chequear contenido del storage
 
-// mostrar productos por estacion---> averiguar estacion por api 
-// chequear si es de día o de noche, cambiar tonalidades de la pagina a partir de eso-----> averiguar por api 
 
 //enviar pedidos por mail, al coincretar compra 
 
@@ -21,7 +19,9 @@
 //GUARDAR EN STORAGE 
 
 recoverStorage();
-//recoverSessionStorage();
+recoverSessionStorage();
+
+getSeason("montevideo")
 
 
 
